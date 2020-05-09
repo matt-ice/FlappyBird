@@ -12,6 +12,7 @@ namespace FlappyBird
 {
     public partial class gameWindow : Form
     {
+        int basePipeSpeed = 8;
         int pipeSpeed = 8;
         int cloudSpeed = 4;
         int gravity = 6;
@@ -36,6 +37,8 @@ namespace FlappyBird
             pipeTop.Left -= pipeSpeed;
             cloud.Left -= cloudSpeed;
             scoreText.Text = "Score: " + score.ToString();
+            int speedIncrease = (int)score / 3;
+            pipeSpeed = basePipeSpeed + speedIncrease ;
 
             if(cloud.Left < cloud.Width * (-1))
             {
@@ -56,7 +59,6 @@ namespace FlappyBird
                 pipeTop.Left = this.Width;
                 score++;
             }
-
             if(flappyBird.Bounds.IntersectsWith(pipeBtm.Bounds) ||
                flappyBird.Bounds.IntersectsWith(pipeTop.Bounds) ||
                flappyBird.Bounds.IntersectsWith(ground.Bounds)  ||
